@@ -12,7 +12,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::all();
+        $contacts = Contact::whereNull('deleted_at')->get();
 
         return view('contacts.index', compact('contacts'));
     }
@@ -56,5 +56,12 @@ class ContactController extends Controller
         $contact->update($validated);
 
         return redirect()->route('contacts.index')->with('success', 'Contato atualizado com sucesso!');
+    }
+
+    public function destroy(Contact $contact)
+    {
+        $contact->delete();
+
+        return redirect()->route('contacts.index')->with('success', 'Contato excluído com sucesso!');
     }
 }

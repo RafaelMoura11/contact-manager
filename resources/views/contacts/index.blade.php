@@ -31,8 +31,13 @@
                         <td>{{ $contact->contact }}</td>
                         <td>{{ $contact->email }}</td>
                         <td>
-                            <a href="{{ route('contacts.show', $contact->id) }}" class="btn btn-info btn-sm">View</a>
-                            <a href="{{ route('contacts.edit', $contact->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="{{ route('contacts.show', $contact->id) }}" class="btn btn-info btn-sm">Visualizar</a>
+                            <a href="{{ route('contacts.edit', $contact->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                            <form action="{{ route('contacts.destroy', $contact->id) }}" method="POST" style="display: inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este contato?')">Excluir</button>
+                            </form>
                         </td>
                     </tr>
                 @empty
