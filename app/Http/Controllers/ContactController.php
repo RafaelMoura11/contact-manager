@@ -10,12 +10,23 @@ class ContactController extends Controller
     /**
      * Contact Controller:
      */
-    public function index()
-{
-    $contacts = Contact::whereNull('deleted_at')->paginate(5);
+    public function index(Request $request)
+    {
+        $query = Contact::query();
 
-    return view('contacts.index', compact('contacts'));
-}
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'LIKE', "%{$search}%")
+                ->orWhere('email', 'LIKE', "%{$search}%");
+            });
+        }
+
+        $contacts = $query->whereNull('deleted_at')->paginate(5);
+
+        return view('contacts.index', compact('contacts'));
+    }
+
 
     public function create()
     {

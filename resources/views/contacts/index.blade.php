@@ -19,9 +19,23 @@
                     </form>
                 </div>
             @else
-
                 <a href="{{ route('login') }}" class="btn btn-primary">Sign In</a>
             @endauth
+        </div>
+
+        <!-- Formulário de Filtro -->
+        <div class="mb-4">
+            <form method="GET" action="{{ route('contacts.index') }}" class="d-flex">
+                <input
+                    type="text"
+                    name="search"
+                    class="form-control me-2"
+                    placeholder="Search by name or email"
+                    value="{{ request('search') }}"
+                >
+                <button type="submit" class="btn btn-primary">Filter</button>
+                <a href="{{ route('contacts.index') }}" class="btn btn-secondary ms-2">Clear</a>
+            </form>
         </div>
 
         <div class="mb-4">
@@ -69,6 +83,7 @@
             </tbody>
         </table>
 
+        <!-- Links de paginação -->
         <div class="mt-4 text-center">
             {{ $contacts->links('pagination::bootstrap-5') }}
         </div>        
