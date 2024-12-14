@@ -39,4 +39,22 @@ class ContactController extends Controller
     {
         return view('contacts.show', compact('contact'));
     }
+
+    public function edit(Contact $contact)
+    {
+        return view('contacts.edit', compact('contact'));
+    }
+
+    public function update(Request $request, Contact $contact)
+    {
+        $validated = $request->validate([
+            'name' => 'required|min:5',
+            'contact' => 'required|digits:9|unique:contacts,contact,' . $contact->id,
+            'email' => 'required|email|unique:contacts,email,' . $contact->id,
+        ]);
+
+        $contact->update($validated);
+
+        return redirect()->route('contacts.index')->with('success', 'Contato atualizado com sucesso!');
+    }
 }
