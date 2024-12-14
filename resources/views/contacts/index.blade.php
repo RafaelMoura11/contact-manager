@@ -32,6 +32,7 @@
                         <td>{{ $contact->email }}</td>
                         <td>
                             <a href="{{ route('contacts.show', $contact->id) }}" class="btn btn-info btn-sm">View</a>
+                            <a href="{{ route('contacts.edit', $contact->id) }}" class="btn btn-warning btn-sm">Edit</a>
                         </td>
                     </tr>
                 @empty
