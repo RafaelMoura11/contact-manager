@@ -20,6 +20,11 @@ This project was developed as part of a technical challenge proposed by [ALFASOF
 - **Database:** MySQL with Soft Deletes
 - **Tools:** Composer, Vite
 
+## Registered User Admin 🧑‍💻:
+- 📧 **Email:** admin@alfasoft.com  
+- 🔑 **Password:** password
+
+
 
 ---------------
 
@@ -45,3 +50,8 @@ Este é um projeto desenvolvido como parte de um desafio técnico proposto pela 
 - **Autenticação:** Laravel Breeze
 - **Banco de Dados:** MySQL com Soft Deletes
 - **Outras ferramentas:** Composer, Vite
+
+## Usuário Admin Registrado 🧑‍💻:
+- 📧 **Email:** admin@alfasoft.com  
+- 🔑 **Senha:** password
+
