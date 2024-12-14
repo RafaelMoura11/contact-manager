@@ -18,7 +18,8 @@
                 <h5 class="card-title">{{ $contact->name }}</h5>
                 <p class="card-text">
                     <strong>Contact:</strong> {{ $contact->contact }}<br>
-                    <strong>Email:</strong> {{ $contact->email }}
+                    <strong>Email:</strong> {{ $contact->email }}<br>
+                    <strong>Date:</strong> {{ $contact->created_at->format('d-m-Y') }}
                 </p>
                 <a href="{{ route('contacts.index') }}" class="btn btn-secondary">Back</a>
             </div>
