@@ -34,4 +34,9 @@ class ContactController extends Controller
 
         return redirect()->route('contacts.index')->with('success', 'Contato criado com sucesso!');
     }
+
+    public function show(Contact $contact)
+    {
+        return view('contacts.show', compact('contact'));
+    }
 }
