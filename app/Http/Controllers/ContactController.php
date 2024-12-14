@@ -11,11 +11,11 @@ class ContactController extends Controller
      * Contact Controller:
      */
     public function index()
-    {
-        $contacts = Contact::whereNull('deleted_at')->get();
+{
+    $contacts = Contact::whereNull('deleted_at')->paginate(5);
 
-        return view('contacts.index', compact('contacts'));
-    }
+    return view('contacts.index', compact('contacts'));
+}
 
     public function create()
     {

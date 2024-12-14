@@ -9,22 +9,21 @@
 <body>
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1>Lista de Contatos</h1>
+            <h1>Contact List</h1>
             @auth
-                <!-- Mostrar Logout se o usuário estiver logado -->
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-danger">Logout</button>
                 </form>
             @else
-                <!-- Mostrar Sign In se o usuário NÃO estiver logado -->
+
                 <a href="{{ route('login') }}" class="btn btn-primary">Sign In</a>
             @endauth
         </div>
 
         <div class="mb-4">
             @auth
-                <a href="{{ route('contacts.create') }}" class="btn btn-primary">Adicionar Novo Contato</a>
+                <a href="{{ route('contacts.create') }}" class="btn btn-primary">Add a new Contact</a>
             @endauth
         </div>
 
@@ -32,11 +31,11 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nome</th>
-                    <th>Contato</th>
+                    <th>Name</th>
+                    <th>Contact</th>
                     <th>Email</th>
                     @auth
-                        <th>Ações</th>
+                        <th>Actions</th>
                     @endauth
                 </tr>
             </thead>
@@ -49,23 +48,27 @@
                         <td>{{ $contact->email }}</td>
                         @auth
                             <td>
-                                <a href="{{ route('contacts.show', $contact->id) }}" class="btn btn-info btn-sm">Visualizar</a>
-                                <a href="{{ route('contacts.edit', $contact->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                                <a href="{{ route('contacts.show', $contact->id) }}" class="btn btn-info btn-sm">View</a>
+                                <a href="{{ route('contacts.edit', $contact->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                 <form action="{{ route('contacts.destroy', $contact->id) }}" method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este contato?')">Excluir</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this contact?')">Delete</button>
                                 </form>
                             </td>
                         @endauth
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="{{ auth()->check() ? 5 : 4 }}" class="text-center">Nenhum contato encontrado.</td>
+                        <td colspan="{{ auth()->check() ? 5 : 4 }}" class="text-center">No contacts found.</td>
                     </tr>
                 @endforelse
             </tbody>
         </table>
+
+        <div class="mt-4 text-center">
+            {{ $contacts->links('pagination::bootstrap-5') }}
+        </div>        
     </div>
 </body>
 </html>
