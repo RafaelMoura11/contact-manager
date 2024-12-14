@@ -20,6 +20,7 @@
                     <th>Nome</th>
                     <th>Contato</th>
                     <th>Email</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,10 +30,13 @@
                         <td>{{ $contact->name }}</td>
                         <td>{{ $contact->contact }}</td>
                         <td>{{ $contact->email }}</td>
+                        <td>
+                            <a href="{{ route('contacts.show', $contact->id) }}" class="btn btn-info btn-sm">Visualizar</a>
+                        </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="4" class="text-center">Nenhum contato encontrado.</td>
+                        <td colspan="5" class="text-center">Nenhum contato encontrado.</td>
                     </tr>
                 @endforelse
             </tbody>
