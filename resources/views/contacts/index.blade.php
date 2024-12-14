@@ -11,10 +11,13 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1>Contact List</h1>
             @auth
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="btn btn-danger">Logout</button>
-                </form>
+                <div class="d-flex align-items-center">
+                    <h3 class="me-3">Welcome, {{ auth()->user()->name }}</h3>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Logout</button>
+                    </form>
+                </div>
             @else
 
                 <a href="{{ route('login') }}" class="btn btn-primary">Sign In</a>

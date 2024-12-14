@@ -11,7 +11,7 @@
         <h1 class="mb-4">Add a new contact</h1>
 
         <form action="{{ route('contacts.store') }}" method="POST">
-            @csrf <!-- Token de segurança do Laravel -->
+            @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
                 <input type="text" class="form-control" id="name" name="name" required minlength="5">
